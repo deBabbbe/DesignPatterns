@@ -1,6 +1,5 @@
 using Implementation;
 
-[TestFixture]
 public class FactoryMethodTests
 {
     [Test]
