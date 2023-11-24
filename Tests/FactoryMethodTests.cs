@@ -1,5 +1,7 @@
 using Implementation;
 
+namespace Tests;
+
 public class FactoryMethodTests
 {
     [Test]
