@@ -11,8 +11,8 @@ public class FactoryMethodTests
 
         var product = creator.FactoryMethod();
 
-        Assert.IsNotNull(product);
-        Assert.IsInstanceOf<ConcreteProduct>(product);
+        Assert.That(product, Is.Not.Null);
+        Assert.That(product, Is.InstanceOf<ConcreteProduct>());
     }
 
     [Test]
@@ -23,6 +23,6 @@ public class FactoryMethodTests
         IProduct product = new ConcreteProduct();
         var output = product.Display();
 
-        Assert.AreEqual(expectedOutput, output);
+        Assert.That(output, Is.EqualTo(expectedOutput));
     }
 }

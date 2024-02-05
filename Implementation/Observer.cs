@@ -17,15 +17,9 @@ public class Subject
         }
     }
 
-    public void Attach(IObserver observer)
-    {
-        _observers.Add(observer);
-    }
+    public void Attach(IObserver observer) => _observers.Add(observer);
 
-    public void Detach(IObserver observer)
-    {
-        _observers.Remove(observer);
-    }
+    public void Detach(IObserver observer) => _observers.Remove(observer);
 
     private void NotifyObservers()
     {

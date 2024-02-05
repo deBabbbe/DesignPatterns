@@ -9,7 +9,7 @@ public class SingletonTests
     {
         var instance = Singleton.Instance;
 
-        Assert.IsNotNull(instance);
+        Assert.That(instance, Is.Not.Null);
     }
 
     [Test]
@@ -18,6 +18,6 @@ public class SingletonTests
         var instance1 = Singleton.Instance;
         var instance2 = Singleton.Instance;
 
-        Assert.AreSame(instance1, instance2);
+        Assert.That(instance2, Is.SameAs(instance1));
     }
 }

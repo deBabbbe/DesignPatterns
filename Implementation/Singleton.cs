@@ -6,9 +6,5 @@ public class Singleton
 
     private Singleton() { }
 
-    public static Singleton Instance()
-    {
-        _instance ??= new Singleton();
-        return _instance;
-    }
+    public static Singleton Instance() => _instance ??= new Singleton();
 }
