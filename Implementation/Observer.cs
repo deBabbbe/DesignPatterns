@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 public class Subject
 {
-    private List<IObserver> _observers = new();
-    private int state;
+    private readonly List<IObserver> _observers = [];
+    private int _state;
 
     public int State
     {
-        get => state;
+        get => _state;
         set
         {
-            state = value;
+            _state = value;
             NotifyObservers();
         }
     }
@@ -37,7 +37,7 @@ public interface IObserver
 
 public class ConcreteObserverA : IObserver
 {
-    private Subject _subject;
+    private readonly Subject _subject;
 
     public ConcreteObserverA(Subject subject)
     {
@@ -50,7 +50,7 @@ public class ConcreteObserverA : IObserver
 
 public class ConcreteObserverB : IObserver
 {
-    private Subject _subject;
+    private readonly Subject _subject;
 
     public ConcreteObserverB(Subject subject)
     {

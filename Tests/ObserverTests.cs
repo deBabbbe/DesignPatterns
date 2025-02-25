@@ -9,8 +9,8 @@ public class ObserverTests
     {
         var subject = new Subject();
         var observerA = new ConcreteObserverA(subject);
-        int newState = 42;
-        string expectedOutput = $"ConcreteObserverA: Zustand des Subjects wurde aktualisiert: {newState}";
+        var newState = 42;
+        var expectedOutput = $"ConcreteObserverA: Zustand des Subjects wurde aktualisiert: {newState}";
 
         subject.State = newState;
 
