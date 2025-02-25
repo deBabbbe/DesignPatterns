@@ -6,5 +6,5 @@ public class Singleton
 
     private Singleton() { }
 
-    public static Singleton Instance() => _instance ??= new Singleton();
+    public static Singleton Instance => _instance ??= new Singleton();
 }
