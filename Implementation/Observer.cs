@@ -13,26 +13,12 @@ public class Subject : ISubject
 {
     private readonly List<IObserver> _observers = [];
 
-    public void Attach(IObserver observer)
-    {
-        if (!_observers.Contains(observer))
-            _observers.Add(observer);
-    }
+    public void Attach(IObserver observer) => _observers.Add(observer);
 
-    public void Detach(IObserver observer)
-    {
-        if (_observers.Contains(observer))
-            _observers.Remove(observer);
-    }
+    public void Detach(IObserver observer) => _observers.Remove(observer);
 
 
-    public void NotifyObservers(string message)
-    {
-        foreach (var observer in _observers)
-        {
-            observer.Update(message);
-        }
-    }
+    public void NotifyObservers(string message) => _observers.ForEach(observer => observer.Update(message));
 }
 
 public interface IObserver
@@ -44,18 +30,12 @@ public class ConcreteObserverA : IObserver
 {
     public string? Message { get; set; }
 
-    public void Update(string message)
-    {
-        Message = "ConcreteObserverA: " + message;
-    }
+    public void Update(string message) => Message = "ConcreteObserverA: " + message;
 }
 
 public class ConcreteObserverB : IObserver
 {
     public string? Message { get; set; }
 
-    public void Update(string message)
-    {
-        Message = "ConcreteObserverB: " + message;
-    }
+    public void Update(string message) => Message = "ConcreteObserverB: " + message;
 }
