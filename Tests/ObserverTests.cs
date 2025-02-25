@@ -12,7 +12,21 @@ public class ObserverTests
         subject.Attach(observerA);
         subject.NotifyObservers("Test message");
 
-        var expectedMessage = "ConcreteObserverA: Test message";
+        var expectedMessage = "ConcreteObserverA: Test message;";
+
+        Assert.That(observerA.Message, Is.EqualTo(expectedMessage));
+    }
+
+    [Test]
+    public void ConcreteObserverA_Update_ReturnsExpectedString_AttachedMultipleTimes()
+    {
+        var observerA = new ConcreteObserverA();
+        var subject = new Subject();
+        subject.Attach(observerA);
+        subject.Attach(observerA);
+        subject.NotifyObservers("Test message");
+
+        var expectedMessage = "ConcreteObserverA: Test message;";
 
         Assert.That(observerA.Message, Is.EqualTo(expectedMessage));
     }

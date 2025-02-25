@@ -13,7 +13,11 @@ public class Subject : ISubject
 {
     private readonly List<IObserver> _observers = [];
 
-    public void Attach(IObserver observer) => _observers.Add(observer);
+    public void Attach(IObserver observer)
+    {
+        if (_observers.Contains(observer)) return;
+        _observers.Add(observer);
+    }
 
     public void Detach(IObserver observer) => _observers.Remove(observer);
 
@@ -30,7 +34,7 @@ public class ConcreteObserverA : IObserver
 {
     public string? Message { get; set; }
 
-    public void Update(string message) => Message = "ConcreteObserverA: " + message;
+    public void Update(string message) => Message += "ConcreteObserverA: " + message + ";";
 }
 
 public class ConcreteObserverB : IObserver
