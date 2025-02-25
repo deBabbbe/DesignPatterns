@@ -2,61 +2,60 @@ namespace Implementation;
 
 using System.Collections.Generic;
 
-public class Subject
+public interface ISubject
+{
+    void Attach(IObserver observer);
+    void Detach(IObserver observer);
+    void NotifyObservers(string message);
+}
+
+public class Subject : ISubject
 {
     private readonly List<IObserver> _observers = [];
-    private int _state;
 
-    public int State
+    public void Attach(IObserver observer)
     {
-        get => _state;
-        set
-        {
-            _state = value;
-            NotifyObservers();
-        }
+        if (!_observers.Contains(observer))
+            _observers.Add(observer);
     }
 
-    public void Attach(IObserver observer) => _observers.Add(observer);
+    public void Detach(IObserver observer)
+    {
+        if (_observers.Contains(observer))
+            _observers.Remove(observer);
+    }
 
-    public void Detach(IObserver observer) => _observers.Remove(observer);
 
-    private void NotifyObservers()
+    public void NotifyObservers(string message)
     {
         foreach (var observer in _observers)
         {
-            observer.Update();
+            observer.Update(message);
         }
     }
 }
 
 public interface IObserver
 {
-    string Update();
+    void Update(string message);
 }
 
 public class ConcreteObserverA : IObserver
 {
-    private readonly Subject _subject;
+    public string? Message { get; set; }
 
-    public ConcreteObserverA(Subject subject)
+    public void Update(string message)
     {
-        _subject = subject;
-        _subject.Attach(this);
+        Message = "ConcreteObserverA: " + message;
     }
-
-    public string Update() => $"ConcreteObserverA: Zustand des Subjects wurde aktualisiert: {_subject.State}";
 }
 
 public class ConcreteObserverB : IObserver
 {
-    private readonly Subject _subject;
+    public string? Message { get; set; }
 
-    public ConcreteObserverB(Subject subject)
+    public void Update(string message)
     {
-        _subject = subject;
-        _subject.Attach(this);
+        Message = "ConcreteObserverB: " + message;
     }
-
-    public string Update() => $"ConcreteObserverB: Zustand des Subjects wurde aktualisiert: {_subject.State}";
 }

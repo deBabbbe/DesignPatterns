@@ -7,13 +7,31 @@ public class ObserverTests
     [Test]
     public void ConcreteObserverA_Update_ReturnsExpectedString()
     {
+        var observerA = new ConcreteObserverA();
         var subject = new Subject();
-        var observerA = new ConcreteObserverA(subject);
-        var newState = 42;
-        var expectedOutput = $"ConcreteObserverA: Zustand des Subjects wurde aktualisiert: {newState}";
+        subject.Attach(observerA);
+        subject.NotifyObservers("Test message");
 
-        subject.State = newState;
+        var expectedMessage = "ConcreteObserverA: Test message";
 
-        Assert.That(observerA.Update(), Is.EqualTo(expectedOutput));
+        Assert.That(observerA.Message, Is.EqualTo(expectedMessage));
+    }
+
+    [Test]
+    public void ConcreteObserverB_Detach()
+    {
+        var observerB = new ConcreteObserverB();
+        var subject = new Subject();
+        subject.Attach(observerB);
+        subject.NotifyObservers("Different message");
+
+        var expectedMessage = "ConcreteObserverB: Different message";
+
+        Assert.That(observerB.Message, Is.EqualTo(expectedMessage));
+
+        subject.Detach(observerB);
+
+        subject.NotifyObservers("Test message");
+        Assert.That(observerB.Message, Is.EqualTo(expectedMessage));
     }
 }
