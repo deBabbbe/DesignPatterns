@@ -1,4 +1,4 @@
-# Design Patterns C#
+# Design Patterns C #
 
 Implementation of design patterns in C#
 
@@ -7,3 +7,5 @@ Implementation of design patterns in C#
 - Singleton
 - FactoryMethod
 - Observer
+- Strategy
+- Decorator
