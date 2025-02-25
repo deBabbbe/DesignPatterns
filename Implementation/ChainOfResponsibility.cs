@@ -18,32 +18,23 @@ public class ChainOfResponsibility
 
     public class RabbitHandler : AnimalHandler
     {
-        public override string HandleFood(string food)
-        {
-            return food == "carrot"
-                ? $"Rabbit eats the {food}."
-                : base.HandleFood(food);
-        }
+        public override string HandleFood(string food) => food == "carrot"
+            ? $"Rabbit eats the {food}."
+            : base.HandleFood(food);
     }
 
     public class MonkeyHandler : AnimalHandler
     {
-        public override string HandleFood(string food)
-        {
-            return food == "banana"
-                ? $"Monkey eats the {food}."
-                : base.HandleFood(food);
-        }
+        public override string HandleFood(string food) => food == "banana"
+            ? $"Monkey eats the {food}."
+            : base.HandleFood(food);
     }
 
     public class LionHandler : AnimalHandler
     {
-        public override string HandleFood(string food)
-        {
-            return food == "steak"
-                ? $"Lion eats the {food}."
-                : base.HandleFood(food);
-        }
+        public override string HandleFood(string food) => food == "steak"
+            ? $"Lion eats the {food}."
+            : base.HandleFood(food);
     }
 
     public class AnimalFeeder
